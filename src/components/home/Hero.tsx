@@ -83,42 +83,43 @@ export default function Hero() {
                     </>
                 )}
 
-                {/* Location Modal */}
-                {isLocationModalOpen && (
-                    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-                        <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
-                            <div className="p-6 border-b flex justify-between items-center">
-                                <h2 className="text-xl font-bold text-secondary">Select your area</h2>
-                                <button onClick={() => setIsLocationModalOpen(false)} className="text-gray-400 hover:text-secondary">✕</button>
-                            </div>
-                            <div className="max-h-[60vh] overflow-y-auto">
-                                {locations.map((loc) => (
-                                    <button
-                                        key={loc}
-                                        onClick={() => {
-                                            setLocation(loc);
-                                            setIsLocationModalOpen(false);
-                                        }}
-                                        className="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors text-secondary border-b last:border-0 border-gray-100 group"
-                                    >
-                                        <span className="flex items-center gap-4">
-                                            <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-white group-hover:text-primary transition-colors flex-shrink-0">
-                                                <MapPin size={16} />
-                                            </div>
-                                            <span className="font-medium">{loc}</span>
-                                        </span>
-                                        <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                                            {location === loc && <Check size={20} className="text-primary" />}
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                        {/* Click outside to close */}
-                        <div className="absolute inset-0 -z-10" onClick={() => setIsLocationModalOpen(false)}></div>
-                    </div>
-                )}
             </motion.div>
+
+            {/* Location Modal */}
+            {isLocationModalOpen && (
+                <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+                    <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
+                        <div className="p-6 border-b flex justify-between items-center">
+                            <h2 className="text-xl font-bold text-secondary">Select your area</h2>
+                            <button onClick={() => setIsLocationModalOpen(false)} className="text-gray-400 hover:text-secondary">✕</button>
+                        </div>
+                        <div className="max-h-[60vh] overflow-y-auto">
+                            {locations.map((loc) => (
+                                <button
+                                    key={loc}
+                                    onClick={() => {
+                                        setLocation(loc);
+                                        setIsLocationModalOpen(false);
+                                    }}
+                                    className="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors text-secondary border-b last:border-0 border-gray-100 group"
+                                >
+                                    <span className="flex items-center gap-4">
+                                        <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 group-hover:bg-white group-hover:text-primary transition-colors flex-shrink-0">
+                                            <MapPin size={16} />
+                                        </div>
+                                        <span className="font-medium">{loc}</span>
+                                    </span>
+                                    <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                                        {location === loc && <Check size={20} className="text-primary" />}
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    {/* Click outside to close */}
+                    <div className="absolute inset-0 -z-10" onClick={() => setIsLocationModalOpen(false)}></div>
+                </div>
+            )}
         </section>
     );
 }
